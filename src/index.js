@@ -49,6 +49,8 @@ function Square(props) {
       this.state = {
         history: [{
           squares: Array(9).fill(null),
+          checkedCol: null,
+          checkedRow: null,
         }],
         stepNumber: 0,
         xIsNext: true,
@@ -66,6 +68,8 @@ function Square(props) {
       this.setState({
         history: history.concat([{
           squares: squares,
+          checkedCol: (i % 3) + 1,
+          checkedRow: Math.ceil((i + 1) / 3),
         }]),
         stepNumber: history.length,
         xIsNext: !this.state.xIsNext,
@@ -87,7 +91,7 @@ function Square(props) {
 
       const moves = history.map((step, move) => {
         const desc = move ?
-          'Go to move #' + move :
+          'Go to move #' + move + ` (col: ${step.checkedCol}, row: ${step.checkedRow})`:
           'Go to game start';
           return (
             <li key={move}>

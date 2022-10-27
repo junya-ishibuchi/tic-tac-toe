@@ -127,14 +127,17 @@ function Square(props) {
           </div>
           <div className="game-info">
             <div>{status}</div>
-            <div>History Order by:
-            <button
-              onClick={() =>
-                this.setState({ isHistoryOrderByAsc: !this.state.isHistoryOrderByAsc })
-              }
-            >
-              {this.state.isHistoryOrderByAsc ? "Asc" : "Desc"}
-            </button>
+            <div>
+              History Order by:
+              <button
+                onClick={() =>
+                  this.setState((state) => ({
+                    isHistoryOrderByAsc: !state.isHistoryOrderByAsc,
+                  }))
+                }
+              >
+                {this.state.isHistoryOrderByAsc ? "Asc" : "Desc"}
+              </button>
             </div>
             <ol>{this.state.isHistoryOrderByAsc ? moves : moves.reverse()}</ol>
           </div>

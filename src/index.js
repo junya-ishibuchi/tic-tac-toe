@@ -54,6 +54,7 @@ function Square(props) {
         stepNumber: 0,
         xIsNext: true,
         currentHistoryStep: null,
+        isHistoryOrderByAsc: true,
       };
     }
 
@@ -83,7 +84,6 @@ function Square(props) {
         currentHistoryStep: step,
       });
     }
-
 
     render() {
       const history = this.state.history;
@@ -120,7 +120,16 @@ function Square(props) {
           </div>
           <div className="game-info">
             <div>{status}</div>
-            <ol>{moves}</ol>
+            <div>History Order by:
+            <button
+              onClick={() =>
+                this.setState({ isHistoryOrderByAsc: !this.state.isHistoryOrderByAsc })
+              }
+            >
+              {this.state.isHistoryOrderByAsc ? "Asc" : "Desc"}
+            </button>
+            </div>
+            <ol>{this.state.isHistoryOrderByAsc ? moves : moves.reverse()}</ol>
           </div>
         </div>
       );

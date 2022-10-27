@@ -110,6 +110,8 @@ function Square(props) {
       let status;
       if (winnerLineNumbers) {
         status = 'Winner: ' + current.squares[winnerLineNumbers[0]];
+      } else if (!current.squares.includes(null)) {
+        status = 'Draw!';
       } else {
         status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       }
